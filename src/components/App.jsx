@@ -1,56 +1,25 @@
-import { useEffect } from 'react';
-import AddForm from './addContactForm/addContactForm';
-import ContactList from './contactList/contactList';
+import { Suspense } from 'react';
 
-import Filter from './filter/filter';
+import { Route, Routes } from 'react-router-dom';
+import Layout from 'layout/layout';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { addContact, deleteContact, filterContacts } from 'reduxstore/slice';
-import {
-  addContactThunk,
-  delContactThunk,
-  getContactsThunk,
-} from 'reduxstore/thunk';
-import { nanoid } from 'nanoid';
+import RegistrationPage from 'pages/register';
+import ContactsPage from 'pages/contacts';
+import LoginPage from 'pages/login';
 
 const App = () => {
-  const contacts = useSelector(state => state.contactInfo);
-  const isLoading = useSelector(state => state.isLoading);
-  console.log('isLoading', isLoading);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getContactsThunk());
-  }, [dispatch]);
-
-  const addContactF = (name, number) => {
-    const newContact = { name, number, id: nanoid() };
-    dispatch(addContact(newContact));
-    dispatch(addContactThunk(newContact));
-  };
-  const filter = filterName => {
-    dispatch(filterContacts(filterName));
-  };
-
-  const delBtn = evt => {
-    const id = evt.target.id;
-    dispatch(deleteContact(id));
-    dispatch(delContactThunk(id));
-  };
-
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <AddForm addContact={addContactF} />
-
-      <h2>Contacts</h2>
-      <Filter filter={filter} />
-      {isLoading ? (
-        <h2>is P R O C E S S I N G . . . . </h2>
-      ) : (
-        contacts && <ContactList arr={contacts} delBtn={delBtn} />
-      )}
-    </div>
+    <>
+      <Suspense fallback={'LOADING.....'}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/auth" element={<RegistrationPage />} />
+            <Route path="/contacts" element={<ContactsPage />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 
