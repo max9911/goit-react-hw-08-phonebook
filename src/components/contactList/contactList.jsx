@@ -8,7 +8,7 @@ export default function ContactList({ arr, delBtn }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(filterContacts(''));
-  }, []);
+  }, [dispatch]);
 
   const filterInput = useSelector(state => state.contactInfo.filterName);
   const filter = filterInput ? filterInput.toLowerCase() : false;
