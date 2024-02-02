@@ -3,11 +3,13 @@ import css from './contactList.module.css';
 import ContactElem from 'components/contactElem/contactElem';
 
 export default function ContactList({ arr, delBtn }) {
-  const filter = useSelector(state => state.filterName);
-
+  const filterInput = useSelector(state => state.contactInfo.filterName);
+  const filter = filterInput ? filterInput.toLowerCase() : filterInput;
+  console.log(filter);
   if (filter) {
     const result = arr.filter(el => {
       const aaa = el.name.toLowerCase();
+
       return aaa.includes(filter);
     });
 

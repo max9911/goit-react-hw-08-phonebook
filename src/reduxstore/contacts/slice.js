@@ -29,6 +29,7 @@ const contactsSlice = createSlice({
     },
     filterContacts: (state, { payload }) => {
       state.filterName = payload;
+      console.log(payload);
     },
     deleteContact: (state, { payload }) => {
       const contacts = state.contactInfo;
