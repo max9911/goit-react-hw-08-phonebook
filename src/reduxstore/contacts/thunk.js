@@ -24,7 +24,7 @@ export const delContactThunk = createAsyncThunk(
   'contacs',
   async (id, { rejectWithValue }) => {
     try {
-      const result = await delContact(id);
+      await delContact(id);
     } catch (err) {
       const error = rejectWithValue(err.response.data);
       console.log(error.payload.msg);

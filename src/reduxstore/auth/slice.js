@@ -1,12 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { handleAuth, handleLogout } from './handlers';
+import { handleAuth } from './handlers';
 
-const {
-  singInThunk,
-  singUpThunk,
-  userRefreshThunk,
-  logOutThunk,
-} = require('./authThunks');
+const { singInThunk, singUpThunk, userRefreshThunk } = require('./authThunks');
 
 const initialState = {
   token: '',
