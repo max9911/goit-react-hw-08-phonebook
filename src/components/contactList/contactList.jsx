@@ -1,13 +1,21 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './contactList.module.css';
 import ContactElem from 'components/contactElem/contactElem';
+import { useEffect } from 'react';
+import { filterContacts } from 'reduxstore/contacts/slice';
 
 export default function ContactList({ arr, delBtn }) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(filterContacts(''));
+  }, []);
+
   const filterInput = useSelector(state => state.contactInfo.filterName);
   const filter = filterInput ? filterInput.toLowerCase() : filterInput;
   console.log(filter);
+  let result = '';
   if (filter) {
-    const result = arr.filter(el => {
+    result = arr.filter(el => {
       const aaa = el.name.toLowerCase();
 
       return aaa.includes(filter);
