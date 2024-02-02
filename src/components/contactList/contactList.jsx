@@ -4,6 +4,7 @@ import ContactElem from 'components/contactElem/contactElem';
 
 export default function ContactList({ arr, delBtn }) {
   const filter = useSelector(state => state.filterName);
+
   if (filter) {
     const result = arr.filter(el => {
       const aaa = el.name.toLowerCase();

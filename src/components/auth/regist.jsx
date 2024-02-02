@@ -1,25 +1,15 @@
 import * as React from 'react';
-
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink } from 'react-router-dom';
-
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
-export default function SignIn({handleSubmit}) {
-
- 
-
+export default function SingUp({ handleSubmit }) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -32,11 +22,8 @@ export default function SignIn({handleSubmit}) {
             alignItems: 'center',
           }}
         >
-          {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar> */}
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign up form
           </Typography>
           <Box
             component="form"
@@ -44,6 +31,16 @@ export default function SignIn({handleSubmit}) {
             noValidate
             sx={{ mt: 1 }}
           >
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="name"
+              label="Username"
+              type="name"
+              id="name"
+              autoComplete="name"
+            />
             <TextField
               margin="normal"
               required
@@ -71,15 +68,8 @@ export default function SignIn({handleSubmit}) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
-            <Grid container>
-              <Grid item>
-                <NavLink to={'/registr'} variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </NavLink>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>

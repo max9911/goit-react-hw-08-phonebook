@@ -14,11 +14,11 @@ import {
   delContactThunk,
   getContactsThunk,
 } from 'reduxstore/contacts/thunk';
+import { contactsSelector, isLoadingSelector } from 'reduxstore/root/selectors';
 
 const ContactsPage = () => {
-  const contacts = useSelector(state => state.contactInfo);
-  const isLoading = useSelector(state => state.isLoading);
-  console.log('isLoading', isLoading);
+  const contacts = useSelector(contactsSelector);
+  const isLoading = useSelector(isLoadingSelector);
   const dispatch = useDispatch();
 
   const addContactF = (name, number) => {
@@ -39,6 +39,7 @@ const ContactsPage = () => {
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
+
   return (
     <div>
       <h1>Phonebook</h1>
