@@ -11,7 +11,7 @@ export default function ContactList({ arr, delBtn }) {
   }, []);
 
   const filterInput = useSelector(state => state.contactInfo.filterName);
-  const filter = filterInput ? filterInput.toLowerCase() : filterInput;
+  const filter = filterInput ? filterInput.toLowerCase() : false;
   console.log(filter);
   let result = '';
   if (filter) {
